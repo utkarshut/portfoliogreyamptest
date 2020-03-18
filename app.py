@@ -33,12 +33,11 @@ mysql.init_app(app)
 @app.route('/', methods=['GET', 'POST'])
 def login():
     cur = mysql.get_db().cursor() #to execute commands
-    cur.execute("USE myflaskapp")
+    result = cur.execute("SELECT * FROM portfolio")
+    print(result)
     cur.close()
     #get articles
-    result = cur.execute("SELECT * FROM portfolio")
     print('hello')
-    print(result)
     if not session.get('logged_in'):
         form = forms.LoginForm(request.form)
         if request.method == 'POST':
