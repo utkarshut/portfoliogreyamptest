@@ -13,14 +13,17 @@ app = Flask(__name__)
 app.secret_key = os.urandom(12)  # Generic key for dev purposes only
 
 #config
-app.config['MYSQL_HOST'] = 'us-cdbr-iron-east-04.cleardb.net'
-app.config['MYSQL_USER'] = 'bbe61b03d957b1'
-app.config['MYSQL_PASSWORD'] = '66111f55'
-app.config['MYSQL_DB'] = 'heroku_3fabd405f1a8d0f'
+app.config['MYSQL_DATABASE_HOST'] = 'us-cdbr-iron-east-04.cleardb.net'
+app.config['MYSQL_DATABASE_USER'] = 'bbe61b03d957b1'
+app.config['MYSQL_DATABASE_PASSWORD'] = '66111f55'
+app.config['MYSQL_DATABASE_DB'] = 'heroku_3fabd405f1a8d0f'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor' #a cursor is a connection to let us run methods for queries. We set is as a dictionary
 
+
 #init MySQL
-mysql = MySQL(app,cursorclass='DictCursor')
+mysql = MySQL()
+mysql.init_app(app)
+
 # Heroku
 #from flask_heroku import Heroku
 #heroku = Heroku(app)
@@ -31,7 +34,7 @@ mysql = MySQL(app,cursorclass='DictCursor')
 def login():
     cur = mysql.get_db().cursor() #to execute commands
     cur.execute("USE myflaskapp")
-
+    cur.close()
     #get articles
     result = cur.execute("SELECT * FROM portfolio")
     print('hello')
