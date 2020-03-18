@@ -10,10 +10,10 @@ import os
 
 import os
 import sys
-import urlparse
+import urllib.parse
 
 # Register database schemes in URLs.
-urlparse.uses_netloc.append('mysql')
+urllib.parse.uses_netloc.append('mysql')
 
 try:
 
@@ -38,7 +38,7 @@ try:
             'PORT': url.port,
         })
 
-
+        print(url.username)
         if url.scheme == 'mysql':
             DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
 except Exception:
@@ -54,6 +54,7 @@ app.secret_key = os.urandom(12)  # Generic key for dev purposes only
 # -------- Login ------------------------------------------------------------- #
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    print('hello')
     if not session.get('logged_in'):
         form = forms.LoginForm(request.form)
         if request.method == 'POST':
