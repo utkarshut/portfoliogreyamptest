@@ -34,7 +34,7 @@ mysql.init_app(app)
 def login():
     cur = mysql.get_db().cursor() #to execute commands
     result = cur.execute("SELECT * FROM portfolio")
-    rows = cursor.fetchall()
+    rows = cur.fetchall()
     for row in rows:
         print(row)
     cur.close()
