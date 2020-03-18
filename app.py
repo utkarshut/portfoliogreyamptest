@@ -7,45 +7,20 @@ from flask import Flask, redirect, url_for, render_template, request, session
 import json
 import sys
 import os
+from flaskext.mysql import MySQL
 
-import os
-import sys
-import urllib.parse
-
-# Register database schemes in URLs.
-urllib.parse.uses_netloc.append('mysql')
-
-try:
-
-    # Check to make sure DATABASES is set in settings.py file.
-    # If not default to {}
-
-    if 'DATABASES' not in locals():
-        DATABASES = {}
-
-    if 'DATABASE_URL' in os.environ:
-        url = urlparse.urlparse(os.environ['DATABASE_URL'])
-
-        # Ensure default database exists.
-        DATABASES['default'] = DATABASES.get('default', {})
-
-        # Update with environment configuration.
-        DATABASES['default'].update({
-            'NAME': url.path[1:],
-            'USER': url.username,
-            'PASSWORD': url.password,
-            'HOST': url.hostname,
-            'PORT': url.port,
-        })
-
-        print(url.username)
-        if url.scheme == 'mysql':
-            DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
-except Exception:
-    print('Unexpected error:', sys.exc_info())
 app = Flask(__name__)
 app.secret_key = os.urandom(12)  # Generic key for dev purposes only
 
+#config
+app.config['MYSQL_HOST'] = 'us-cdbr-iron-east-04.cleardb.net'
+app.config['MYSQL_USER'] = 'bbe61b03d957b1'
+app.config['MYSQL_PASSWORD'] = '66111f55'
+app.config['MYSQL_DB'] = 'heroku_3fabd405f1a8d0f'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor' #a cursor is a connection to let us run methods for queries. We set is as a dictionary
+
+#init MySQL
+mysql = MySQL(app,cursorclass='DictCursor')
 # Heroku
 #from flask_heroku import Heroku
 #heroku = Heroku(app)
@@ -54,8 +29,13 @@ app.secret_key = os.urandom(12)  # Generic key for dev purposes only
 # -------- Login ------------------------------------------------------------- #
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    cur = mysql.get_db().cursor() #to execute commands
+    cur.execute("USE myflaskapp")
+
+    #get articles
+    result = cur.execute("SELECT * FROM portfolio")
     print('hello')
-    print(url.username)
+    print(result)
     if not session.get('logged_in'):
         form = forms.LoginForm(request.form)
         if request.method == 'POST':
