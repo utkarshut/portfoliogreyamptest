@@ -55,6 +55,7 @@ app.secret_key = os.urandom(12)  # Generic key for dev purposes only
 @app.route('/', methods=['GET', 'POST'])
 def login():
     print('hello')
+    print(url.username)
     if not session.get('logged_in'):
         form = forms.LoginForm(request.form)
         if request.method == 'POST':
