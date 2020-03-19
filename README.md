@@ -12,10 +12,10 @@
 
 ## Setup
 ``` 
-git clone https://github.com/anfederico/Flaskex
-cd Flaskex
+https://github.com/utkarshut/portfoliogreyamptest
+cd portfoliogreyamptest
 pip install -r requirements.txt
-python app.py
+python main.py
 ```
 
 ## Contributing
