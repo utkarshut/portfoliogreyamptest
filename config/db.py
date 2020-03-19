@@ -1,4 +1,4 @@
-from main import app
+from __init__ import app
 from flaskext.mysql import MySQL
 
 app.config['MYSQL_DATABASE_HOST'] = 'us-cdbr-iron-east-04.cleardb.net'

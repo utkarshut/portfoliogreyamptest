@@ -1,8 +1,8 @@
-import pymysql
-from main import app
-from db import mysql
+from __init__ import app
+from config.db import mysql
 from flask import request
 import json
+import pymysql
 
 
 @app.route('/portfolio', methods=['GET'])
@@ -99,7 +99,7 @@ def update_trade():
 
 
 @app.route('/portfolio/removeTrade', methods=['POST'])
-def removeTrade():
+def remove_trade():
     conn = None
     cursor = None
     try:
