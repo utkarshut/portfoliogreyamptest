@@ -36,6 +36,7 @@ def portfolio(portfolio_type=None):
             rows2 = cursor.fetchall()
             holdings = []
             for result in rows2:
+                result["buy_avg"] = round(result["buy_avg"], 0)
                 holdings.append(result)
             portfolio_data['holdings'] = holdings
 
