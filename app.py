@@ -73,7 +73,9 @@ def add_trade():
             stock_id = rows[0]['id']
             cursor.execute("INSERT INTO user_trade(rate,trade,quantity,date,stock_id) VALUES \
             (%s,%s,%s,%s,%s)", (rate, trade, quantity, date, stock_id))
+            rowcount = cursor.rowcount
             conn.commit()
+            ErrorMsg.InsertSuccess["data"] = '{} Row Successfully Inserted'.format(rowcount)
             return ErrorMsg.InsertSuccess
         else:
             return ErrorMsg.StockNotAvailable
@@ -107,12 +109,13 @@ def update_trade():
             return ErrorMsg.TradeOptionSupport
         cursor.execute("SELECT id from stock_list WHERE name=%s", stock_name)
         rows = cursor.fetchall()
-        print(rows)
         if len(rows) != 0:
             stock_id = rows[0]['id']
             cursor.execute("UPDATE user_trade set rate=%s,trade=%s,quantity=%s,date=%s,\
             stock_id= %s where id =%s", (rate, trade, quantity, date, stock_id, trade_id))
+            rowcount = cursor.rowcount
             conn.commit()
+            ErrorMsg.UpdateSuccess["data"] = '{} Row Successfully Updated'.format(rowcount)
             return ErrorMsg.UpdateSuccess
         else:
             return ErrorMsg.StockNotAvailable
