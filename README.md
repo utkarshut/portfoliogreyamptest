@@ -9,6 +9,31 @@
 
 ## Features
 
+- **Portfolio**
+<img src="./API_SAMPLE_IMAGES/portfolio.png" alt="Final Output"/>
+
+
+- **Portfolio Holdings**
+<img src="./API_SAMPLE_IMAGES/portfolio_holdings.png" alt="Final Output"/>
+
+
+- **Portfolio Returns**
+<img src="./API_SAMPLE_IMAGES/portfolio_returns.png" alt="Final Output"/>
+
+
+- **Portfolio Add Trade**
+<img src="./API_SAMPLE_IMAGES/portfolio_add_trade.png" alt="Final Output"/>
+
+
+- **Portfolio Update Trade**
+<img src="./API_SAMPLE_IMAGES/portfolio_update_trade.png" alt="Final Output"/>
+
+
+- **Portfolio Remove trade**
+<img src="./API_SAMPLE_IMAGES/portfolio_remove_trade.png" alt="Final Output"/>
+
+- **Portfolio Add Stock Name**
+<img src="./API_SAMPLE_IMAGES/portfolio_insert_stock_name.png" alt="Final Output"/>
 
 ## Setup
 ``` 
