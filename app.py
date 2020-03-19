@@ -1,11 +1,8 @@
-from flask import Flask
 import pymysql
-from app import app
+from main import app
 from db import mysql
 from flask import request
 import json
-
-app = Flask(__name__)
 
 
 @app.route('/portfolio', methods=['GET'])
