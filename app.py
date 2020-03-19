@@ -62,12 +62,18 @@ def add_trade():
         stock_name = request_obj['stock_name']
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
+        if type(rate) is not int or type(quantity) is not int:
+            return ErrorMsg.NonIntegerValueError
+        if rate < 0 or quantity < 0:
+            return ErrorMsg.NegativeValueError
+        if trade not in ['BUY', 'SELL']:
+            return ErrorMsg.TradeOptionSupport
         cursor.execute("SELECT id from stock_list WHERE name=%s", stock_name)
         rows = cursor.fetchall()
         if len(rows) != 0:
             stock_id = rows[0]['id']
             cursor.execute("INSERT INTO user_trade(rate,trade,quantity,date,stock_id) VALUES \
-            (%s,%s,%s,%s,%s)",(rate, trade, quantity, date, stock_id))
+            (%s,%s,%s,%s,%s)", (rate, trade, quantity, date, stock_id))
             conn.commit()
             return ErrorMsg.InsertSuccess
         else:
@@ -92,10 +98,14 @@ def update_trade():
         date = request_obj['date']
         stock_name = request_obj['stock_name']
         trade_id = request_obj['trade_id']
-
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-
+        if type(rate) is not int or type(quantity) is not int:
+            return ErrorMsg.NonIntegerValueError
+        if rate < 0 or quantity < 0:
+            return ErrorMsg.NegativeValueError
+        if trade not in ['BUY', 'SELL']:
+            return ErrorMsg.TradeOptionSupport
         cursor.execute("SELECT id from stock_list WHERE name=%s", stock_name)
         rows = cursor.fetchall()
         print(rows)
@@ -125,7 +135,13 @@ def remove_trade():
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute("DELETE FROM user_trade WHERE id=%s", trade_id)
+        rows = cursor.fetchall()
+        rowcount = cursor.rowcount
         conn.commit()
+        ErrorMsg.RemovedSuccess["data"] = '{} Row Deleted'.format(rowcount)
+        if rowcount == 0:
+            ErrorMsg.RemovedSuccess["success"] = False
+            ErrorMsg.RemovedSuccess["description"] = 'Given Trade id not Available'
         return ErrorMsg.RemovedSuccess
     except Exception as e:
         print(e)
@@ -143,8 +159,10 @@ def add_stock():
         stock_name = request_obj['stock_name']
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("INSERT INTO stock_list (name) VALUES (%s)", stock_name)
+        cursor.execute("INSERT IGNORE INTO stock_list (name) VALUES (%s)", stock_name)
+        rowcount = cursor.rowcount
         conn.commit()
+        ErrorMsg.InsertSuccess["data"] = '{} Row Successfully Inserted'.format(rowcount)
         return ErrorMsg.InsertSuccess
     except Exception as e:
         print(e)
