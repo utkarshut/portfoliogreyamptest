@@ -1,8 +1,12 @@
 from __init__ import app
 from config.db import mysql
 from flask import request
+from static.error_messages import ErrorMsg
 import json
 import pymysql
+from flask import json
+from werkzeug.exceptions import HTTPException
+from werkzeug.exceptions import BadRequest
 
 
 @app.route('/portfolio', methods=['GET'])
@@ -56,13 +60,18 @@ def add_trade():
         quantity = request_obj['quantity']
         date = request_obj['date']
         stock_name = request_obj['stock_name']
-
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("INSERT INTO user_trade(rate,trade,quantity,date,stock_id) VALUES \
-        (%s,%s,%s,%s,(SELECT id from stock_list WHERE stock_list.name=%s))", (rate, trade, quantity, date, stock_name))
-        conn.commit()
-        return 'Inserted Successfully'
+        cursor.execute("SELECT id from stock_list WHERE name=%s", stock_name)
+        rows = cursor.fetchall()
+        if len(rows) != 0:
+            stock_id = rows[0]['id']
+            cursor.execute("INSERT INTO user_trade(rate,trade,quantity,date,stock_id) VALUES \
+            (%s,%s,%s,%s,%s)",(rate, trade, quantity, date, stock_id))
+            conn.commit()
+            return ErrorMsg.InsertSuccess
+        else:
+            return ErrorMsg.StockNotAvailable
     except Exception as e:
         print(e)
     finally:
@@ -86,11 +95,18 @@ def update_trade():
 
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute("UPDATE user_trade set rate=%s,trade=%s,quantity=%s,date=%s,\
-        stock_id=(SELECT id from stock_list WHERE stock_list.name=%s) \
-        where id =%s", (rate, trade, quantity, date, stock_name, trade_id))
-        conn.commit()
-        return 'Updated Successfully'
+
+        cursor.execute("SELECT id from stock_list WHERE name=%s", stock_name)
+        rows = cursor.fetchall()
+        print(rows)
+        if len(rows) != 0:
+            stock_id = rows[0]['id']
+            cursor.execute("UPDATE user_trade set rate=%s,trade=%s,quantity=%s,date=%s,\
+            stock_id= %s where id =%s", (rate, trade, quantity, date, stock_id, trade_id))
+            conn.commit()
+            return ErrorMsg.UpdateSuccess
+        else:
+            return ErrorMsg.StockNotAvailable
     except Exception as e:
         print(e)
     finally:
@@ -110,12 +126,51 @@ def remove_trade():
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute("DELETE FROM user_trade WHERE id=%s", trade_id)
         conn.commit()
-        return 'Removed Successfully'
+        return ErrorMsg.RemovedSuccess
     except Exception as e:
         print(e)
     finally:
         cursor.close()
         conn.close()
+
+
+@app.route('/portfolio/insertStock', methods=['POST'])
+def add_stock():
+    conn = None
+    cursor = None
+    try:
+        request_obj = request.get_json()
+        stock_name = request_obj['stock_name']
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute("INSERT INTO stock_list (name) VALUES (%s)", stock_name)
+        conn.commit()
+        return ErrorMsg.InsertSuccess
+    except Exception as e:
+        print(e)
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    """Return JSON instead of HTML for HTTP errors."""
+    # start with the correct headers and status code from the error
+    response = e.get_response()
+    # replace the body with JSON
+    response.data = json.dumps({
+        "code": e.code,
+        "name": e.name,
+        "description": e.description,
+    })
+    response.content_type = "application/json"
+    return response
+
+
+@app.errorhandler(BadRequest)
+def handle_bad_request(e):
+    return 'bad request!', 400
 
 
 if __name__ == "__main__":

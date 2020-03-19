@@ -4,3 +4,4 @@ gunicorn
 urllib3
 flask-mysql
 pymysql
+werkzeug
