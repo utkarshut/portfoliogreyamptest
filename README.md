@@ -10,7 +10,7 @@
 ## Features
 
 - **Portfolio**
-<img src="./API_SAMPLE_IMAGES/portfolio.png" alt="Final Output"/>
+<img src="./Media/API_SAMPLE_IMAGES/portfolio.png" alt="Final Output"/>
 
 
 - **Portfolio Holdings**
