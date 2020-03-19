@@ -39,8 +39,7 @@ def portfolio(portfolio_type=None):
                 result["buy_avg"] = round(result["buy_avg"], 0)
                 holdings.append(result)
             portfolio_data['holdings'] = holdings
-        response_data = {"success": True}
-        response_data['data'] = portfolio_data
+        response_data = {"success": True, 'data': portfolio_data}
         return json.dumps(response_data, indent=4, sort_keys=True, default=str)
     except Exception as e:
         print(e)
