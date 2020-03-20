@@ -127,7 +127,7 @@ handled. [app.py file](https://github.com/utkarshut/portfoliogreyamptest/blob/ma
 <img src="./Media/API_SAMPLE_IMAGES/portfolio_insert_stock_name.png" alt="Final Output"/>
 
 **Note** : 
-1. Date format should be "YYY-MM-DD" format in post calls.
+1. Date format should be "YYYY-MM-DD" format in post calls.
 2. To add trade with different stock name , user have to insert Stock using portfolio Add Stock Name API.
 3. In case of post calls rate and quantity should have positive integer value.
 4. In case of post calls trade can only have value 'BUY' or 'SELL'.
