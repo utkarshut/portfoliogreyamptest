@@ -17,9 +17,12 @@ FLASK , Flask-RESTful is an extension for Flask that adds support for quickly bu
 
 ## Features
 
-- **Portfolio**
+### Portfolio
 
-* Endpoint 
+- Endpoint - https://portfoliogreyamptest.herokuapp.com/portfolio
+- Method - GET
+- Example :
+
 <img src="./Media/API_SAMPLE_IMAGES/portfolio.png" alt="Final Output"/>
 
 
