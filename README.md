@@ -11,31 +11,31 @@
 **Database** 
 
 ClearDB , ClearDB on Heroku enables you to build your apps using native MySQL databases
-(https://elements.heroku.com/addons/cleardb)
+[Clear DB Details](https://elements.heroku.com/addons/cleardb)
 
 **REST Framework**
 
 FLASK , Flask-RESTful is an extension for Flask that adds support for quickly building REST APIs. It is a lightweight abstraction that works with your existing ORM/libraries. Flask-RESTful encourages best practices with minimal setup
-(https://flask-restful.readthedocs.io/en/latest/)
+[Flask Details](https://flask-restful.readthedocs.io/en/latest/)
 
 **Deployment Server**
 
 Heroku, Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud
-(www.heroku.com)
+[Heroku Details](www.heroku.com)
 
 **File/Folder Details** 
 - Media - Media folder contains all the screenshot images.
-(https://github.com/utkarshut/portfoliogreyamptest/tree/master/Media)
+[Media folder](https://github.com/utkarshut/portfoliogreyamptest/tree/master/Media)
 - Sql - Sql folder contains the sql files to create tables.
-(https://github.com/utkarshut/portfoliogreyamptest/tree/master/Sql)
+[Sql folder](https://github.com/utkarshut/portfoliogreyamptest/tree/master/Sql)
 - Config - Config folder contains the database configuration files.
-(https://github.com/utkarshut/portfoliogreyamptest/tree/master/config)
+[Config folder](https://github.com/utkarshut/portfoliogreyamptest/tree/master/config)
 - Static - Static folder contains the static error messages.
-(https://github.com/utkarshut/portfoliogreyamptest/tree/master/static)
+[Static folder](https://github.com/utkarshut/portfoliogreyamptest/tree/master/static)
 - app.py - It contains all the route param with function defined for each route param.In this file only all the errors are
-handled.(https://github.com/utkarshut/portfoliogreyamptest/blob/master/app.py)
+handled.[app.py file](https://github.com/utkarshut/portfoliogreyamptest/blob/master/app.py)
 - requirement.txt - Requirement file has all the dependencies for the application.
-(https://github.com/utkarshut/portfoliogreyamptest/blob/master/requirements.txt)
+[requirement.txt file](https://github.com/utkarshut/portfoliogreyamptest/blob/master/requirements.txt)
 
 
 
