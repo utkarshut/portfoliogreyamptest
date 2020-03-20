@@ -119,22 +119,22 @@ Heroku, Heroku is a platform as a service (PaaS) that enables developers to buil
 ## Error Handling
 
 - In case of add/update trade , trade value can have only BUY or SELL.
-<img src="./Media/API_SAMPLE_IMAGES/invalide_Trade.png" alt="Final Output"/>
+<img src="./Media/Error_Handling_Cases/invalide_Trade.png" alt="Final Output"/>
 
 - In case of add/update trade , quantity and rate can have only positive values.
-<img src="./Media/API_SAMPLE_IMAGES/negative_fields.png" alt="Final Output"/>
+<img src="./Media/Error_Handling_Cases/negative_fields.png" alt="Final Output"/>
 
 - In case of add/update trade , user need to provide valid stock name to update the trade.
-<img src="./Media/API_SAMPLE_IMAGES/invalid_stockname.png" alt="Final Output"/>
+<img src="./Media/Error_Handling_Cases/invalid_stockname.png" alt="Final Output"/>
 
 - In case of update trade ,user need to provide valid trade id.
-<img src="./Media/API_SAMPLE_IMAGES/update_invalide_trade_ID.png" alt="Final Output"/>
+<img src="./Media/Error_Handling_Cases/update_invalide_trade_ID.png" alt="Final Output"/>
 
 - In case of remove trade , user need to provide valid trade id to remove it.
-<img src="./Media/API_SAMPLE_IMAGES/remove_invalide_trade_id.png" alt="Final Output"/>
+<img src="./Media/Error_Handling_Cases/remove_invalide_trade_id.png" alt="Final Output"/>
 
 - In case of inserting stock , user need to provide different stock name.
-<img src="./Media/API_SAMPLE_IMAGES/inserting_exsiting_stock.png" alt="Final Output"/>
+<img src="./Media/Error_Handling_Cases/inserting_exsiting_stock.png" alt="Final Output"/>
 
 ## Setup
 ``` 
