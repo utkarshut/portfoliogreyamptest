@@ -103,7 +103,7 @@ Heroku, Heroku is a platform as a service (PaaS) that enables developers to buil
 ### Portfolio Add Stock Name
 
 - Endpoint - https://portfoliogreyamptest.herokuapp.com/portfolio/insertStock
-- Method - GET
+- Method - POST
 - Payload Sample -
 {
 	"stock_name":"AXISBANK"
@@ -113,8 +113,11 @@ Heroku, Heroku is a platform as a service (PaaS) that enables developers to buil
 <img src="./Media/API_SAMPLE_IMAGES/portfolio_insert_stock_name.png" alt="Final Output"/>
 
 **Note** : 
-1. Date format should be "YYY-MM-DD" format.
-2. To add trade with different stock name , user have to insert Stock using portfolio Add Stock Name API 
+1. Date format should be "YYY-MM-DD" format in post calls.
+2. To add trade with different stock name , user have to insert Stock using portfolio Add Stock Name API.
+3. In case of post calls rate and quantity should have positive integer value.
+4. In case of post calls trade can only have value 'BUY' or 'SELL'
+
 
 ## Error Handling
 
