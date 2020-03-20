@@ -23,7 +23,21 @@ FLASK , Flask-RESTful is an extension for Flask that adds support for quickly bu
 Heroku, Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud
 (www.heroku.com)
 
-**File Details** 
+**File/Folder Details** 
+- Media - Media folder contains all the screenshot images.
+(https://github.com/utkarshut/portfoliogreyamptest/tree/master/Media)
+- Sql - Sql folder contains the sql files to create tables.
+(https://github.com/utkarshut/portfoliogreyamptest/tree/master/Sql)
+- Config - Config folder contains the database configuration files.
+(https://github.com/utkarshut/portfoliogreyamptest/tree/master/config)
+- Static - Static folder contains the static error messages.
+(https://github.com/utkarshut/portfoliogreyamptest/tree/master/static)
+- app.py - It contains all the route param with function defined for each route param.In this file only all the errors are
+handled.(https://github.com/utkarshut/portfoliogreyamptest/blob/master/app.py)
+- requirement.txt - Requirement file has all the dependencies for the application.
+(https://github.com/utkarshut/portfoliogreyamptest/blob/master/requirements.txt)
+
+
 
 ## Features
 
@@ -116,7 +130,7 @@ Heroku, Heroku is a platform as a service (PaaS) that enables developers to buil
 1. Date format should be "YYY-MM-DD" format in post calls.
 2. To add trade with different stock name , user have to insert Stock using portfolio Add Stock Name API.
 3. In case of post calls rate and quantity should have positive integer value.
-4. In case of post calls trade can only have value 'BUY' or 'SELL'
+4. In case of post calls trade can only have value 'BUY' or 'SELL'.
 
 
 ## Error Handling
