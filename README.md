@@ -6,13 +6,20 @@
 
 <br><br>
 **Database** 
-[ClearDB] , ClearDB on Heroku enables you to build your apps using native MySQL databases
+
+ClearDB , ClearDB on Heroku enables you to build your apps using native MySQL databases
 (https://elements.heroku.com/addons/cleardb)
 
+**REST Framework**
+
+FLASK , Flask-RESTful is an extension for Flask that adds support for quickly building REST APIs. It is a lightweight abstraction that works with your existing ORM/libraries. Flask-RESTful encourages best practices with minimal setup
+(https://flask-restful.readthedocs.io/en/latest/)
 
 ## Features
 
 - **Portfolio**
+
+* Endpoint 
 <img src="./Media/API_SAMPLE_IMAGES/portfolio.png" alt="Final Output"/>
 
 
