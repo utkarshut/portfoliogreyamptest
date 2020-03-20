@@ -26,7 +26,7 @@ Heroku, Heroku is a platform as a service (PaaS) that enables developers to buil
 **File/Folder Details** 
 - Media - Media folder contains all the screenshot images.
 [Media folder](https://github.com/utkarshut/portfoliogreyamptest/tree/master/Media)
-- Sql - Sql folder contains the sql files to create tables.
+- Sql - Sql folder contains the sql files for table creation.
 [Sql folder](https://github.com/utkarshut/portfoliogreyamptest/tree/master/Sql)
 - Config - Config folder contains the database configuration files.
 [Config folder](https://github.com/utkarshut/portfoliogreyamptest/tree/master/config)
